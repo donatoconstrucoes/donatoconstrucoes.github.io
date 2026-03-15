@@ -1,0 +1,312 @@
+{
+  "atualizado": "2026-03-15T18:47:52.304Z",
+  "total": 34,
+  "unidades": [
+    {
+      "unidade": "101",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE",
+      "area": 54.25,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "102",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE",
+      "area": 53,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "103",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 53,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "104",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 54.25,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "105",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE",
+      "area": 44,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "106",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE",
+      "area": 44,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "201",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 63.9,
+      "valor": 287000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "202",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 280000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "203",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 280000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "204",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 63.5,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "205",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 63.6,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "206",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 280000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "207",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "208",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 64.8,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "301",
+      "tipo": "02 QUARTOS + AREA IMPERMEAVEL",
+      "area": 48.05,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "302",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "303",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "304",
+      "tipo": "02 QUARTOS + AREA IMPERMEAVEL",
+      "area": 48.3,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "305",
+      "tipo": "02 QUARTOS + AREA IMPERMEAVEL",
+      "area": 48.05,
+      "valor": 287000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "306",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 280000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "307",
+      "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
+      "area": 56.05,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "308",
+      "tipo": "02 QUARTOS + AREA IMPERMEAVEL",
+      "area": 48.05,
+      "valor": 288000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "401",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 47.45,
+      "valor": 292000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "402",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 50.65,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "403",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 48.449999999999996,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "404",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 48.449999999999996,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "405",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 50.65,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "406",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 47.45,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "407",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 47.550000000000004,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "408",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 50.4,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "409",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 48.449999999999996,
+      "valor": 290000,
+      "status": "DISPONÍVEL",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "410",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 48.449999999999996,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "411",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 50.55,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    },
+    {
+      "unidade": "412",
+      "tipo": "02 QUARTOS - DUPLEX, COM AREA PRIVATIVA E C/ GARAGEM COBERTA",
+      "area": 47.800000000000004,
+      "valor": 0,
+      "status": "VENDIDO",
+      "corretor": "",
+      "observacao": ""
+    }
+  ]
+}
