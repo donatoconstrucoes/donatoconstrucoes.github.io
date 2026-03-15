@@ -676,116 +676,90 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </style>
 
 <script>
-// ============================================
-// INTEGRAÇÃO GOOGLE SHEETS — STATUS DOS APTOS
-// Para atualizar: edite a planilha e aguarde 1-2 minutos
-// ============================================
-const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6o61mGyLtpsc4vA9d2k7Qof9vqJ_mWbqBhjr3lGFsy56OOJxOoCayOZllced5fWe8syS7lju7AyeW/pub?output=csv';
+const DADOS_URL = 'https://donatoconstrucoes.github.io/dados-aptos.json';
 
-const STATUS_CONFIG = {
-  'VENDIDO':   { badge: 'bd-vend', label: 'Vendido',   price: 'vt' },
-  'RESERVADO': { badge: 'bd-res',  label: 'Reservado', price: 'res' },
-  'DISPONÍVEL':{ badge: 'bd-disp', label: 'Disponível',price: '' },
-  'DISPONIVEL':{ badge: 'bd-disp', label: 'Disponível',price: '' },
-  '':          { badge: 'bd-disp', label: 'Disponível',price: '' },
-};
-
-async function carregarStatusPlanilha() {
+async function carregarUnidades() {
   try {
-    // Usar proxy CORS para contornar restrições do browser
-    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(SHEETS_URL);
-    const resp = await fetch(proxyUrl);
-    const csv = await resp.text();
-    const linhas = csv.trim().split('\n').slice(1); // pular cabeçalho
-    
-    const dados = {};
-    linhas.forEach(linha => {
-      const cols = linha.split(',');
-      if (cols.length >= 3) {
-        const apto = cols[1]?.trim().replace(/"/g,'');
-        const status = cols[2]?.trim().replace(/"/g,'').toUpperCase();
-        const valor = cols[6]?.trim().replace(/"/g,'');
-        if (apto) dados[apto] = { status, valor };
-      }
-    });
-    
-    // Atualizar cards dos apartamentos
-    document.querySelectorAll('.acard').forEach(card => {
-      const numEl = card.querySelector('.anum');
-      if (!numEl) return;
-      const apto = numEl.textContent.trim();
-      const info = dados[apto];
-      if (!info) return;
-      
-      const cfg = STATUS_CONFIG[info.status] || STATUS_CONFIG['DISPONIVEL'];
-      
-      // Atualizar badge
-      const badge = card.querySelector('.abadge');
-      if (badge) {
-        badge.className = 'abadge ' + cfg.badge;
-        badge.textContent = cfg.label;
-      }
-      
-      // Atualizar preço
-      const priceEl = card.querySelector('.aprice');
-      if (priceEl && info.valor) {
-        if (cfg.price === 'vt') {
-          priceEl.className = 'aprice vt';
-          priceEl.textContent = 'Unidade vendida';
-        } else if (cfg.price === 'res') {
-          priceEl.className = 'aprice res';
-          priceEl.textContent = 'Reservado';
-        } else {
-          priceEl.className = 'aprice';
-          // Formatar valor
-          const num = parseFloat(info.valor.replace(/[^0-9,.]/g,'').replace(',','.'));
-          if (!isNaN(num) && num > 0) {
-            priceEl.textContent = 'R$ ' + num.toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-          }
-        }
-      }
-      
-      // Atualizar opacidade do card
-      card.classList.toggle('vnd', info.status === 'VENDIDO');
-    });
-    
-    // Atualizar seção de disponíveis
-    atualizarDisponiveisPlanilha(dados);
-    
-    console.log('✅ Planilha carregada:', Object.keys(dados).length, 'apartamentos');
-  } catch(e) {
-    console.warn('Planilha offline, usando dados estáticos:', e.message);
+    const resp = await fetch(DADOS_URL + '?v=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const dados = await resp.json();
+    renderizarPavimentos(dados.unidades);
+    atualizarDisponiveisSec(dados.unidades);
+    atualizarContador(dados.unidades);
+  } catch (err) {
+    console.warn('[Donato] Mantendo dados estáticos.', err);
   }
 }
 
-function atualizarDisponiveisPlanilha(dados) {
-  const grid = document.querySelector('.dg');
-  if (!grid) return;
-  
-  const disponiveis = Object.entries(dados)
-    .filter(([apt, info]) => info.status !== 'VENDIDO' && info.status !== 'RESERVADO')
-    .map(([apt, info]) => apt);
-  
-  const reservados = Object.entries(dados)
-    .filter(([apt, info]) => info.status === 'RESERVADO')
-    .map(([apt, info]) => apt);
-  
-  // Atualizar contador no hero
-  const hbItems = document.querySelectorAll('.hb-num');
-  if (hbItems[1]) hbItems[1].textContent = disponiveis.length;
-  
-  // Atualizar badge de disponíveis
-  const availTxt = document.querySelector('.avail-txt strong');
-  if (availTxt) {
-    availTxt.textContent = disponiveis.length + ' unidade' + (disponiveis.length !== 1 ? 's' : '') + ' disponív' + (disponiveis.length !== 1 ? 'eis' : 'el') + ' para reserva';
-  }
+function badgeHTML(status) {
+  if (status === 'DISPONÍVEL') return '<span class="abadge bd-disp">Disponível</span>';
+  if (status === 'RESERVADO')  return '<span class="abadge" style="background:rgba(201,168,76,0.12);color:#856404;">Reservado</span>';
+  return '<span class="abadge bd-vend">Vendido</span>';
 }
 
-// Carregar ao abrir a página
-document.addEventListener('DOMContentLoaded', carregarStatusPlanilha);
+function precoHTML(status, valor) {
+  if (status === 'VENDIDO')   return '<p class="aprice vt">Unidade vendida</p>';
+  if (status === 'RESERVADO') return '<p class="aprice vt">Sob consulta</p>';
+  if (valor > 0) return '<p class="aprice">R$ ' + valor.toLocaleString('pt-BR') + '</p>';
+  return '<p class="aprice vt">Consulte</p>';
+}
 
-// Recarregar a cada 2 minutos
-setInterval(carregarStatusPlanilha, 120000);
+function renderizarPavimentos(unidades) {
+  const container = document.querySelector('.pavimentos');
+  if (!container) return;
+
+  const grupos = {};
+  unidades.forEach(u => {
+    const andar = u.andar || 'Pavimento';
+    if (!grupos[andar]) grupos[andar] = [];
+    grupos[andar].push(u);
+  });
+
+  container.innerHTML = '';
+  Object.entries(grupos).forEach(([andar, apts], idx) => {
+    const disp = apts.filter(u => u.status === 'DISPONÍVEL').length;
+    const info = disp > 0 ? disp + ' disponíve' + (disp > 1 ? 'is' : 'l') : 'Esgotado';
+    const cards = apts.map(u => `
+      <div class="acard${u.status === 'VENDIDO' ? ' vnd' : ''}">
+        <p class="anum">Apto ${u.unidade}</p>
+        ${badgeHTML(u.status)}
+        <p class="adesc">${u.tipo || ''}</p>
+        <p class="aarea">${u.area > 0 ? u.area.toLocaleString('pt-BR') + ' m²' : ''}</p>
+        ${precoHTML(u.status, u.valor)}
+      </div>`).join('');
+
+    container.innerHTML += `
+      <div>
+        <div class="pav-hdr" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pav-ttl">${andar}</span>
+          <span class="pav-cnt">${info} · ${apts.length} unidades</span>
+        </div>
+        <div class="pav-body${idx === 0 ? ' open' : ''}">${cards}</div>
+      </div>`;
+  });
+}
+
+function atualizarDisponiveisSec(unidades) {
+  const sec = document.querySelector('.dg');
+  if (!sec) return;
+  const disp = unidades.filter(u => u.status === 'DISPONÍVEL');
+  sec.innerHTML = disp.map(u => `
+    <div class="dc">
+      <p class="dc-apt">Apartamento ${u.unidade}</p>
+      <p class="dc-area">${u.area > 0 ? u.area.toLocaleString('pt-BR') : '—'}</p>
+      <p class="dc-albl">m² construídos</p>
+      <p class="dc-preco">${u.valor > 0 ? 'R$ ' + u.valor.toLocaleString('pt-BR') : 'Consulte'}</p>
+      <p class="dc-desc">${u.tipo || ''}</p>
+    </div>`).join('');
+}
+
+function atualizarContador(unidades) {
+  const disp = unidades.filter(u => u.status === 'DISPONÍVEL').length;
+  const el = document.querySelector('.avail-txt strong');
+  if (el) el.textContent = disp + ' unidades disponíveis';
+}
+
+document.addEventListener('DOMContentLoaded', carregarUnidades);
 </script>
 
 </body>
