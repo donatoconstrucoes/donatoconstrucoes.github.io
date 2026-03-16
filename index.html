@@ -473,7 +473,7 @@ function showPlanta(id, btn) {
     </div>
   </div>
 
-  <div class="pavimentos reveal">
+  <div class="pavimentos reveal" id="pavimentos-container">
     <div class="pav-hdr" onclick="tog(this)">
       <div class="pav-ttl">Térreo <em>· 6 unidades</em></div>
       <div class="pav-cnt">Aptos 101–106 · Todos vendidos ▾</div>
@@ -676,7 +676,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </style>
 
 <script>
-const DADOS_URL = 'https://donatoconstrucoes.github.io/dados-aptos.json';
+const DADOS_URL = 'https://www.donatoconstrucoes.com/dados-aptos.json';
 
 async function carregarUnidades() {
   try {
@@ -715,7 +715,7 @@ function renderizarPavimentos(unidades) {
     grupos[andar].push(u);
   });
 
-  container.innerHTML = '';
+  container.innerHTML = ''; container.className = 'pavimentos reveal';
   Object.entries(grupos).forEach(([andar, apts], idx) => {
     const disp = apts.filter(u => u.status === 'DISPONÍVEL').length;
     const info = disp > 0 ? disp + ' disponíve' + (disp > 1 ? 'is' : 'l') : 'Esgotado';
