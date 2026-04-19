@@ -264,7 +264,7 @@ footer { background: #111E30; padding: 36px 5%; display: flex; justify-content: 
   </div>
   <div class="hero-bar">
     <div class="hb-item"><span class="hb-num">34</span><span class="hb-lbl">Unidades</span></div>
-    <div class="hb-item"><span class="hb-num">9</span><span class="hb-lbl">Disponíveis</span></div>
+    <div class="hb-item"><span class="hb-num" id="hb-disp">5</span><span class="hb-lbl">Disponíveis</span></div>
     <div class="hb-item"><span class="hb-num">5</span><span class="hb-lbl">Pavimentos</span></div>
     <div class="hb-item"><span class="hb-num">332.870</span><span class="hb-lbl">Matrícula RI</span></div>
   </div>
@@ -604,17 +604,8 @@ function showPlanta(id, btn) {
       <div class="fi"><label class="flbl">WhatsApp</label><input type="tel" class="finp" placeholder="(83) 98817-7887"></div>
       <div class="fi"><label class="flbl">E-mail</label><input type="email" class="finp" placeholder="seu@email.com"></div>
       <div class="fi"><label class="flbl">Unidade de interesse</label>
-        <select class="fsel">
+        <select class="fsel" id="select-unidade">
           <option value="">Selecione...</option>
-          <option>Apto 201 — 63,90 m² · R$ 287.000</option>
-          <option>Apto 202 — 56,05 m² · R$ 280.000</option>
-          <option>Apto 203 — 56,05 m² · R$ 280.000</option>
-          <option>Apto 206 — 56,05 m² · R$ 280.000</option>
-          <option>Apto 305 — 48,05 m² · R$ 287.000</option>
-          <option>Apto 306 — 56,05 m² · R$ 280.000</option>
-          <option>Apto 308 — 48,05 m² · R$ 288.000</option>
-          <option>Apto 401 — Duplex · R$ 292.000</option>
-          <option>Apto 409 — Duplex · R$ 290.000</option>
           <option>Ainda não decidi</option>
         </select>
       </div>
@@ -686,6 +677,7 @@ async function carregarUnidades() {
     renderizarPavimentos(dados.unidades);
     atualizarDisponiveisSec(dados.unidades);
     atualizarContador(dados.unidades);
+    populateSelectUnidade(dados.unidades);
   } catch (err) {
     console.warn('[Donato] Mantendo dados estáticos.', err);
   }
@@ -756,7 +748,26 @@ function atualizarDisponiveisSec(unidades) {
 function atualizarContador(unidades) {
   const disp = unidades.filter(u => u.status === 'DISPONÍVEL').length;
   const el = document.querySelector('.avail-txt strong');
-  if (el) el.textContent = disp + ' unidades disponíveis';
+  if (el) el.textContent = disp + ' unidades disponíveis para reserva';
+  const hbDisp = document.getElementById('hb-disp');
+  if (hbDisp) hbDisp.textContent = disp;
+}
+
+function populateSelectUnidade(unidades) {
+  const sel = document.getElementById('select-unidade');
+  if (!sel) return;
+  const disp = unidades.filter(u => u.status === 'DISPONÍVEL');
+  sel.innerHTML = '<option value="">Selecione...</option>';
+  disp.forEach(u => {
+    const opt = document.createElement('option');
+    const preco = u.valor ? 'R$ ' + (u.valor / 1000).toFixed(0).replace('.', ',') + 'k' : '';
+    const area = u.area ? u.area.toFixed(2).replace('.', ',') + ' m²' : '';
+    opt.textContent = 'Apto ' + u.unidade + ' — ' + area + ' · ' + preco;
+    sel.appendChild(opt);
+  });
+  const outros = document.createElement('option');
+  outros.textContent = 'Ainda não decidi';
+  sel.appendChild(outros);
 }
 
 document.addEventListener('DOMContentLoaded', carregarUnidades);
