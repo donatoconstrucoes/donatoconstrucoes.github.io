@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-04-10T19:30:00.000Z",
+  "atualizado": "2026-04-19T02:22:53.868Z",
   "total": 34,
   "unidades": [
     {
@@ -67,8 +67,8 @@
       "andar": "1º ANDAR",
       "tipo": "02 QUARTOS SENDO 01 SUÍTE C/ VARANDA",
       "area": 64.1,
-      "valor": 307000,
-      "status": "DISPONÍVEL",
+      "valor": 0,
+      "status": "VENDIDO",
       "corretor": "",
       "observacao": ""
     },
@@ -187,8 +187,8 @@
       "andar": "2º ANDAR",
       "tipo": "02 QUARTOS + AREA IMPERMEAVEL",
       "area": 48.35,
-      "valor": 298000,
-      "status": "DISPONÍVEL",
+      "valor": 0,
+      "status": "VENDIDO",
       "corretor": "",
       "observacao": ""
     },
